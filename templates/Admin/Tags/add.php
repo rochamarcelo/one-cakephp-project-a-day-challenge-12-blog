@@ -20,8 +20,7 @@
         <legend><?= __('Add Tag') ?></legend>
         <?php
             echo $this->Form->control('name');
-            echo $this->Form->control('slug');
-                ?>
+        ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

@@ -20,7 +20,6 @@
         <legend><?= __('Add Blog') ?></legend>
         <?php
             echo $this->Form->control('title');
-            echo $this->Form->control('slug');
             echo $this->Form->control('summary');
             echo $this->Form->control('published');
             echo $this->Form->control('content');

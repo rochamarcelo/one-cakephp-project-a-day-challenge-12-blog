@@ -21,8 +21,6 @@
         <legend><?= __('Edit Tag') ?></legend>
         <?php
             echo $this->Form->control('name');
-            echo $this->Form->control('slug');
-            echo $this->Form->control('blogs._ids', ['options' => $blogs]);
                 ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

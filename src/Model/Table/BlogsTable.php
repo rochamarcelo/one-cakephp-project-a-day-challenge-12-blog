@@ -52,6 +52,10 @@ class BlogsTable extends Table
             'targetForeignKey' => 'tag_id',
             'joinTable' => 'blogs_tags',
         ]);
+
+        $this->addBehavior('Muffin/Slug.Slug', [
+            'onUpdate' => true,
+        ]);
     }
 
     /**
@@ -75,7 +79,6 @@ class BlogsTable extends Table
         $validator
             ->scalar('slug')
             ->maxLength('slug', 255)
-            ->requirePresence('slug', 'create')
             ->notEmptyString('slug');
 
         $validator

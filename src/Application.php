@@ -44,6 +44,9 @@ class Application extends BaseApplication
      */
     public function bootstrap(): void
     {
+        $this->addPlugin('BootstrapUI');
+        $this->addPlugin('Muffin/Slug');
+
 
         // Call parent to load bootstrap from files.
         parent::bootstrap();
@@ -66,7 +69,6 @@ class Application extends BaseApplication
         }
 
         // Load more plugins here
-        $this->addPlugin('BootstrapUI');
     }
 
     /**
