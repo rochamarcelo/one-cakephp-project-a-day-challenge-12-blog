@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\ORM\Query;
+
 /**
  * Blogs Controller
  *
@@ -18,8 +20,9 @@ class BlogsController extends AppController
      */
     public function index()
     {
-        $query = $this->Blogs->find()
-            ->contain(['Tags']);
+        $query = $this->Blogs->find('index', [
+            'tagSlug' => $this->request->getParam('tag_slug'),
+        ]);
         $blogs = $this->paginate($query);
 
         $this->set(compact('blogs'));

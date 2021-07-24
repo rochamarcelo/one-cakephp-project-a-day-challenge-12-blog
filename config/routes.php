@@ -64,6 +64,12 @@ $routes->scope('/', function (RouteBuilder $builder) {
         ->setPatterns([
             'slug' => '[a-z0-9-_]+',
         ]);
+    $builder->connect('/tag/{tag_slug}', [
+        'controller' => 'Blogs',
+        'action' => 'index',
+    ])->setPatterns([
+        'tag_slug' => '[a-z0-9-_]+',
+    ]);
 
     /*
      * Connect catchall routes for all controllers.
