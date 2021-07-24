@@ -8,11 +8,7 @@
 $this->Html->css(['styles.css'], ['block' => true,])
 ?>
 <!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#!"><?= __('The Awesome Blog')?></a>
-    </div>
-</nav>
+<?= $this->element('nav')?>
 <!-- Page content-->
 <div class="container mt-5">
     <div class="row">
