@@ -28,6 +28,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Blog[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Search\Model\Behavior\SearchBehavior
  */
 class BlogsTable extends Table
 {
@@ -56,6 +57,18 @@ class BlogsTable extends Table
         $this->addBehavior('Muffin/Slug.Slug', [
             'onUpdate' => true,
         ]);
+
+        $this->addBehavior('Search.Search');
+        $this->searchManager()
+            ->add('q', 'Search.Like', [
+                'before' => true,
+                'after' => true,
+                'fieldMode' => 'OR',
+                'comparison' => 'LIKE',
+                'wildcardAny' => '*',
+                'wildcardOne' => '?',
+                'fields' => ['title', 'summary', 'content'],
+            ]);
     }
 
     /**
@@ -117,7 +130,11 @@ class BlogsTable extends Table
      */
     public function findIndex(Query $query, $options)
     {
-        $query = $query->find('published')
+        $query = $query
+            ->find('published')
+            ->find('search', [
+                'search' => $options['search'],
+            ])
             ->contain(['Tags']);
 
         $tagSlug = $options['tagSlug'] ?? null;

@@ -44,6 +44,8 @@ class Application extends BaseApplication
      */
     public function bootstrap(): void
     {
+        $this->addPlugin('Search');
+
         $this->addPlugin('BootstrapUI');
         $this->addPlugin('Muffin/Slug');
 
